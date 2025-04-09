@@ -1,0 +1,128 @@
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+import { ApexOptions } from 'apexcharts';
+
+interface DataPoint {
+  time: string;
+  value: number;
+}
+
+interface TempChartProps {
+  data: DataPoint[];
+}
+
+const TempChart: React.FC<TempChartProps> = ({ data }) => {
+  const chartOptions: ApexOptions = {
+    chart: {
+      height: 350,
+      type: 'line',
+      toolbar: {
+        show: false
+      },
+      zoom: {
+        enabled: false
+      }
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 2
+    },
+    colors: ['#3B82F6'], // Blue color for temperature
+    grid: {
+      borderColor: '#f1f1f1',
+      row: {
+        colors: ['transparent', 'transparent'],
+        opacity: 0.5
+      }
+    },
+    markers: {
+      size: 4,
+      strokeWidth: 0,
+      hover: {
+        size: 6
+      }
+    },
+    xaxis: {
+      categories: data.map(d => d.time),
+      labels: {
+        style: {
+          colors: '#6B7280',
+          fontSize: '12px'
+        },
+        rotate: -45,
+        rotateAlways: true
+      }
+    },
+    yaxis: {
+      title: {
+        text: 'Temperature (°C)',
+        style: {
+          color: '#6B7280',
+          fontSize: '12px'
+        }
+      },
+      labels: {
+        style: {
+          colors: '#6B7280',
+          fontSize: '12px'
+        }
+      }
+    },
+    tooltip: {
+      enabled: true,
+      shared: false,
+      theme: 'dark',
+      x: {
+        show: true,
+        format: 'HH:mm'
+      },
+      y: {
+        formatter: function(val: number) {
+          return val.toFixed(1) + " °C";
+        }
+      },
+      marker: {
+        show: true,
+      },
+      style: {
+        fontSize: '12px'
+      }
+    }
+  };
+
+  const series = [{
+    name: 'Temperature',
+    data: data.map(d => d.value)
+  }];
+
+  return (
+    <div className="max-w-sm w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
+      <div className="flex justify-between mb-5">
+        <div className="grid gap-4 grid-cols-1">
+          <div>
+            <h5 className="inline-flex items-center text-gray-500 leading-none font-normal mb-2">
+              Avg Temp
+              <svg className="w-3 h-3 text-gray-400 hover:text-gray-900 cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+              </svg>
+            </h5>
+            <p className="text-gray-900 text-2xl leading-none font-bold">
+              {(data.reduce((acc, curr) => acc + curr.value, 0) / data.length).toFixed(1)}°C
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div id="temp-chart">
+        <ReactApexChart
+          options={chartOptions}
+          series={series}
+          type="line"
+          height={350}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default TempChart;
