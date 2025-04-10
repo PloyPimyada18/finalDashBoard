@@ -1,16 +1,37 @@
 import React from 'react';
-import LineChart from '../components/LineChart';
-import SensorCard from '../components/SensorCard';
 import PageTemplate from '../components/PageTemplate';
+import Camera from '../components/Camera';
+import SensorCard from '../components/SensorCard';
+import LineChart from '../components/LineChart';
+import CssTable from '../components/CssTable';
 
-const OverviewPage: React.FC = () => {
-  // Example data - in a real application, this would come from an API or IoT device
+const SensorDataPage: React.FC = () => {
   const sensorData = {
     temperature: 30,
     ph: 7,
     carbon: 450,
     sox: 0.8
   };
+
+  // Table data
+  const nodeColumns = [
+    { key: 'node', label: 'Node' },
+    { key: 'status', label: 'Status' },
+    { key: 'maintenance', label: 'Maintenance' }
+  ];
+
+  const nodeData = [
+    { node: 'Node 1', status: 'Active', maintenance: 'Required' },
+    { node: 'Node 2', status: 'Inactive', maintenance: 'Up to Date' },
+    { node: 'Node 3', status: 'Active', maintenance: 'Required' },
+    { node: 'Node 4', status: 'Active', maintenance: 'Up to Date' },
+    { node: 'Node 5', status: 'Inactive', maintenance: 'Required' },
+    { node: 'Node 6', status: 'Active', maintenance: 'Up to Date' },
+    { node: 'Node 7', status: 'Inactive', maintenance: 'Required' },
+    { node: 'Node 8', status: 'Active', maintenance: 'Up to Date' },
+    { node: 'Node 9', status: 'Inactive', maintenance: 'Required' },
+    { node: 'Node 10', status: 'Active', maintenance: 'Up to Date' }
+  ];
 
   // Chart data
   const tempData = [
@@ -49,10 +70,20 @@ const OverviewPage: React.FC = () => {
     { time: '21:00', carbonIn: 425, carbonOut: 405 }, { time: '22:00', carbonIn: 420, carbonOut: 400 },
     { time: '23:00', carbonIn: 415, carbonOut: 395 }, { time: '00:00', carbonIn: 410, carbonOut: 390 }
   ];
-
   return (
-    <PageTemplate title="Overview Dashboard">
-      {/* Sensor Cards Grid */}
+    <PageTemplate title="Sensor Data Analytics">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
+        <div className="flex-1 h-[400px] overflow-hidden">
+          <Camera src="/cell.jpg" />
+        </div>
+        <div className="flex-1 h-[400px] overflow-hidden p-4">
+          <CssTable 
+            columns={nodeColumns} 
+            data={nodeData} 
+            showEdit={true}
+          />
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <SensorCard 
           title="Temperature" 
@@ -110,4 +141,4 @@ const OverviewPage: React.FC = () => {
   );
 };
 
-export default OverviewPage;
+export default SensorDataPage; 

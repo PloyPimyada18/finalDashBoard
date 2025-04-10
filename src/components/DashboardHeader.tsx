@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactorSelector from './header/ReactorSelector';
 import TimeDisplay from './header/TimeDisplay';
 import NotificationIcon from './header/NotificationIcon';
-import SettingsMenu from './header/SettingMenu';
+import ProfileMenu from './header/UserIcon';
 import AddUserButton from './header/AddUserButton';
 import logo from '../assets/pic/logo.png';
 
@@ -10,7 +10,7 @@ const DashboardHeader: React.FC = () => {
   const [selectedReactor, setSelectedReactor] = useState('Reactor1');
 
   return (
-    <div className="bg-white rounded-lg p-4 mb-4">
+    <div className="bg-white rounded-lg p-2.5 mb-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <img src={logo} alt="EGAT Logo" className="h-12 w-auto" />
@@ -28,7 +28,7 @@ const DashboardHeader: React.FC = () => {
           />
           <AddUserButton />
           <NotificationIcon />
-          <SettingsMenu />
+          <ProfileMenu />
         </div>
       </div>
     </div>

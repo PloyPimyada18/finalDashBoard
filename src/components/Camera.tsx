@@ -1,7 +1,9 @@
 import React from "react";
-import cellImage from "../assets/pic/cell1.png";
+interface CameraProps {
+  src: string;
+}
 
-const Camera: React.FC = () => {
+const Camera: React.FC<CameraProps> = ({ src }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full">
       <div className="flex items-center justify-between mb-4">
@@ -9,7 +11,7 @@ const Camera: React.FC = () => {
       </div>
       <div className="w-full aspect-video bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-200">
         <img
-          src={cellImage}
+          src={src}
           alt="Camera Feed"
           className="w-full h-full object-cover"
         />
