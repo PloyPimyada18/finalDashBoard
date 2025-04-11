@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface TableColumn {
   key: string;
@@ -13,9 +13,15 @@ interface CssTableProps {
   columns: TableColumn[];
   data: TableData[];
   showEdit?: boolean;
+  useCheckbox?: boolean;
 }
 
-const CssTable: React.FC<CssTableProps> = ({ columns, data, showEdit = false }) => {
+const CssTable: React.FC<CssTableProps> = ({
+  columns,
+  data,
+  showEdit = false,
+  useCheckbox = false,
+}) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full h-full">
       <div className="overflow-y-auto h-full">
@@ -39,17 +45,29 @@ const CssTable: React.FC<CssTableProps> = ({ columns, data, showEdit = false }) 
               <tr
                 key={index}
                 className={`bg-white ${
-                  index !== data.length - 1 ? 'border-b' : ''
+                  index !== data.length - 1 ? "border-b" : ""
                 } border-gray-200 hover:bg-gray-50`}
               >
                 {columns.map((column) => (
                   <td key={column.key} className="px-6 py-4">
-                    {column.key === 'status' ? (
+                    {column.key === "status" ? (
                       <span
                         className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
-                          item[column.key] === 'Active'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
+                          item[column.key] === "Active"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {item[column.key]}
+                      </span>
+                    ) : column.key === "severity" ? (
+                      <span
+                        className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+                          item[column.key] === "high"
+                            ? "bg-red-100 text-red-800"
+                            : item[column.key] === "medium"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-green-100 text-green-800"
                         }`}
                       >
                         {item[column.key]}
@@ -61,12 +79,19 @@ const CssTable: React.FC<CssTableProps> = ({ columns, data, showEdit = false }) 
                 ))}
                 {showEdit && (
                   <td className="px-6 py-4 text-right">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 hover:underline"
-                    >
-                      Edit
-                    </a>
+                    {useCheckbox ? (
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-4 w-4 text-blue-600"
+                      />
+                    ) : (
+                      <a
+                        href="#"
+                        className="font-medium text-blue-600 hover:underline"
+                      >
+                        Edit
+                      </a>
+                    )}
                   </td>
                 )}
               </tr>

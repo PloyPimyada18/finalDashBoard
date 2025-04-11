@@ -1,35 +1,37 @@
-import React, { useState } from 'react';
-import PageTemplate from '../components/PageTemplate';
+import React, { useState } from "react";
+import PageTemplate from "../components/PageTemplate";
 
 interface User {
   id: string;
   name: string;
-  role: 'admin' | 'user';
+  role: "admin" | "user";
 }
 
 interface IoTNode {
   id: string;
   name: string;
   reactor: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
 }
 
 const SettingsPage: React.FC = () => {
   const [updateInterval, setUpdateInterval] = useState<number>(10);
   const [isRealTime, setIsRealTime] = useState<boolean>(false);
-  const [userRole, setUserRole] = useState<'admin' | 'user'>('user');
+  const [userRole, setUserRole] = useState<"admin" | "user">("user");
   const [nodes, setNodes] = useState<IoTNode[]>([
-    { id: '1', name: 'Node 1', reactor: 'Reactor A', status: 'active' },
-    { id: '2', name: 'Node 2', reactor: 'Reactor B', status: 'inactive' }
+    { id: "1", name: "Node 1", reactor: "Reactor A", status: "active" },
+    { id: "2", name: "Node 2", reactor: "Reactor B", status: "inactive" },
   ]);
-  const [newNode, setNewNode] = useState({ name: '', reactor: 'Reactor A' });
+  const [newNode, setNewNode] = useState({ name: "", reactor: "Reactor1" });
   const [notifications, setNotifications] = useState({
     email: true,
     push: true,
-    sound: true
+    sound: true,
   });
 
-  const handleUpdateIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpdateIntervalChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setUpdateInterval(Number(event.target.value));
   };
 
@@ -38,9 +40,9 @@ const SettingsPage: React.FC = () => {
   };
 
   const handleNotificationChange = (type: keyof typeof notifications) => {
-    setNotifications(prev => ({
+    setNotifications((prev) => ({
       ...prev,
-      [type]: !prev[type]
+      [type]: !prev[type],
     }));
   };
 
@@ -50,10 +52,10 @@ const SettingsPage: React.FC = () => {
         id: Date.now().toString(),
         name: newNode.name,
         reactor: newNode.reactor,
-        status: 'active'
+        status: "active",
       };
       setNodes([...nodes, node]);
-      setNewNode({ name: '', reactor: 'Reactor A' });
+      setNewNode({ name: "", reactor: "Reactor1" });
     }
   };
 
@@ -62,14 +64,16 @@ const SettingsPage: React.FC = () => {
       <div className="p-6 space-y-6 bg-gray-100">
         {/* User Management Section */}
         <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold mb-4 text-black">User Management</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">
+            User Management
+          </h2>
           <div className="space-y-4 mb-4">
             <div className="flex items-center space-x-4">
               <span className="text-black">User Role:</span>
               <select
                 value={userRole}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  setUserRole(e.target.value as 'admin' | 'user');
+                  setUserRole(e.target.value as "admin" | "user");
                 }}
                 className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
               >
@@ -77,12 +81,27 @@ const SettingsPage: React.FC = () => {
                 <option value="user">Regular User</option>
               </select>
             </div>
+            <div className="flex items-center space-x-4 mt-4">
+              <input
+                type="email"
+                placeholder="Enter user email"
+                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-64"
+              />
+              <button
+                onClick={() => alert("Email added!")}
+                className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+              >
+                Add
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Data Update Settings */}
         <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold mb-4 text-black">Data Update Settings</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">
+            Data Update Settings
+          </h2>
           <div className="flex items-center space-x-2 mb-4">
             <input
               type="checkbox"
@@ -91,7 +110,9 @@ const SettingsPage: React.FC = () => {
               onChange={handleRealTimeChange}
               className="h-4 w-4 text-blue-600"
             />
-            <label htmlFor="realTime" className="text-black">Real-time Update</label>
+            <label htmlFor="realTime" className="text-black">
+              Real-time Update
+            </label>
           </div>
           {!isRealTime && (
             <div className="mt-2">
@@ -111,26 +132,32 @@ const SettingsPage: React.FC = () => {
 
         {/* IoT Node Management */}
         <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold mb-4 text-black">IoT Node Management</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">
+            IoT Node Management
+          </h2>
           <div className="space-y-4 mb-4">
             <div className="flex items-center space-x-4">
               <input
                 type="text"
                 placeholder="Node Name"
                 value={newNode.name}
-                onChange={(e) => setNewNode({ ...newNode, name: e.target.value })}
+                onChange={(e) =>
+                  setNewNode({ ...newNode, name: e.target.value })
+                }
                 className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
               />
               <select
                 value={newNode.reactor}
-                onChange={(e) => setNewNode({ ...newNode, reactor: e.target.value })}
+                onChange={(e) =>
+                  setNewNode({ ...newNode, reactor: e.target.value })
+                }
                 className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
               >
-                <option value="Reactor A">Reactor A</option>
-                <option value="Reactor B">Reactor B</option>
-                <option value="Reactor C">Reactor C</option>
+                <option value="Reactor A">Reactor1</option>
+                <option value="Reactor B">Reactor2</option>
+                <option value="Reactor C">Reactor3</option>
               </select>
-              <button 
+              <button
                 onClick={handleAddNode}
                 className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
               >
@@ -142,37 +169,45 @@ const SettingsPage: React.FC = () => {
 
         {/* Notification Settings */}
         <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold mb-4 text-black">Notification Settings</h2>
+          <h2 className="text-xl font-semibold mb-4 text-black">
+            Notification Settings
+          </h2>
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="email"
                 checked={notifications.email}
-                onChange={() => handleNotificationChange('email')}
+                onChange={() => handleNotificationChange("email")}
                 className="h-4 w-4 text-blue-600"
               />
-              <label htmlFor="email" className="text-black">Email Notifications</label>
+              <label htmlFor="email" className="text-black">
+                Email Notifications
+              </label>
             </div>
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="push"
                 checked={notifications.push}
-                onChange={() => handleNotificationChange('push')}
+                onChange={() => handleNotificationChange("push")}
                 className="h-4 w-4 text-blue-600"
               />
-              <label htmlFor="push" className="text-black">Push Notifications</label>
+              <label htmlFor="push" className="text-black">
+                Push Notifications
+              </label>
             </div>
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="sound"
                 checked={notifications.sound}
-                onChange={() => handleNotificationChange('sound')}
+                onChange={() => handleNotificationChange("sound")}
                 className="h-4 w-4 text-blue-600"
               />
-              <label htmlFor="sound" className="text-black">Sound Notifications</label>
+              <label htmlFor="sound" className="text-black">
+                Sound Notifications
+              </label>
             </div>
           </div>
         </div>
@@ -181,4 +216,4 @@ const SettingsPage: React.FC = () => {
   );
 };
 
-export default SettingsPage; 
+export default SettingsPage;
