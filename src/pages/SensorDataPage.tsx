@@ -10,27 +10,32 @@ const SensorDataPage: React.FC = () => {
     temperature: 30,
     ph: 7,
     carbon: 450,
-    sox: 0.8
+    so2: 0.8,
+    do: 6,
+    ec: 1.2,
+    redox: 250,
+    turbidity: 3,
+    light: 800
   };
 
   // Table data
   const nodeColumns = [
     { key: 'node', label: 'Node' },
     { key: 'status', label: 'Status' },
-    { key: 'maintenance', label: 'Maintenance' }
+    { key: 'sensorType', label: 'Sensor Type' }
   ];
 
   const nodeData = [
-    { node: 'Node 1', status: 'Active', maintenance: 'Required' },
-    { node: 'Node 2', status: 'Inactive', maintenance: 'Up to Date' },
-    { node: 'Node 3', status: 'Active', maintenance: 'Required' },
-    { node: 'Node 4', status: 'Active', maintenance: 'Up to Date' },
-    { node: 'Node 5', status: 'Inactive', maintenance: 'Required' },
-    { node: 'Node 6', status: 'Active', maintenance: 'Up to Date' },
-    { node: 'Node 7', status: 'Inactive', maintenance: 'Required' },
-    { node: 'Node 8', status: 'Active', maintenance: 'Up to Date' },
-    { node: 'Node 9', status: 'Inactive', maintenance: 'Required' },
-    { node: 'Node 10', status: 'Active', maintenance: 'Up to Date' }
+    { node: 'Node 1', status: 'Active', sensorType: 'Temperature' },
+    { node: 'Node 2', status: 'Inactive', sensorType: 'pH' },
+    { node: 'Node 3', status: 'Active', sensorType: 'Carbon' },
+    { node: 'Node 4', status: 'Active', sensorType: 'SO₂' },
+    { node: 'Node 5', status: 'Inactive', sensorType: 'DO' },
+    { node: 'Node 6', status: 'Active', sensorType: 'EC' },
+    { node: 'Node 7', status: 'Inactive', sensorType: 'Redox' },
+    { node: 'Node 8', status: 'Active', sensorType: 'Turbidity' },
+    { node: 'Node 9', status: 'Inactive', sensorType: 'Light' },
+    { node: 'Node 10', status: 'Active', sensorType: 'Temperature' }
   ];
 
   // Chart data
@@ -84,7 +89,7 @@ const SensorDataPage: React.FC = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <SensorCard 
           title="Temperature" 
           value={sensorData.temperature} 
@@ -103,10 +108,40 @@ const SensorDataPage: React.FC = () => {
           type="carbon" 
         />
         <SensorCard 
-          title="SOx Level" 
-          value={sensorData.sox} 
+          title="SO₂ Level" 
+          value={sensorData.so2} 
           unit="ppm" 
-          type="sox" 
+          type="so2" 
+        />
+        <SensorCard 
+          title="Dissolved Oxygen" 
+          value={sensorData.do} 
+          unit="mg/L" 
+          type="do" 
+        />
+        <SensorCard 
+          title="Electrical Conductivity" 
+          value={sensorData.ec} 
+          unit="mS/cm" 
+          type="ec" 
+        />
+        <SensorCard 
+          title="Redox Potential" 
+          value={sensorData.redox} 
+          unit="mV" 
+          type="redox" 
+        />
+        <SensorCard 
+          title="Turbidity" 
+          value={sensorData.turbidity} 
+          unit="NTU" 
+          type="turbidity" 
+        />
+        <SensorCard 
+          title="Light Intensity" 
+          value={sensorData.light} 
+          unit="lux" 
+          type="light" 
         />
       </div>
 

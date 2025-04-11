@@ -10,6 +10,9 @@ export interface DataItem {
   label: string;
   value: number;
   color: string;
+  avg_cell_size?: number;  // Average cell size in μm
+  density_estimate?: number;  // Cell density in cells/mL or cells/image
+  dominant_color?: string;  // Dominant color in the image
 }
 
 export interface DonutChartProps {
@@ -20,6 +23,9 @@ export interface DonutChartProps {
   height?: string | number;
   onToggleItem?: (id: string, newState: boolean) => void;
   visibleItems?: string[];
+  avgCellSize?: number;
+  densityEstimate?: number;
+  dominantColor?: string;
 }
 
 const DonutChart: React.FC<DonutChartProps> = ({
@@ -30,6 +36,9 @@ const DonutChart: React.FC<DonutChartProps> = ({
   height = '18rem',
   onToggleItem,
   visibleItems,
+  avgCellSize,
+  densityEstimate,
+  dominantColor,
 }) => {
   // Filter data based on visible items
   const filteredData = React.useMemo(() => {
@@ -187,6 +196,33 @@ const DonutChart: React.FC<DonutChartProps> = ({
           </div>
         ))}
       </div>
+
+      {/* Overall Statistics */}
+      {(avgCellSize || densityEstimate || dominantColor) && (
+        <div className="mt-6 pt-4 border-t border-gray-200">
+          <h6 className="text-sm font-semibold text-gray-700 mb-3">Overall Cell Statistics</h6>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {avgCellSize && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{avgCellSize.toFixed(2)}</div>
+                <div className="text-sm text-gray-500">Average Size (μm)</div>
+              </div>
+            )}
+            {densityEstimate && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{densityEstimate.toLocaleString()}</div>
+                <div className="text-sm text-gray-500">Density (cells/mL)</div>
+              </div>
+            )}
+            {dominantColor && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{dominantColor}</div>
+                <div className="text-sm text-gray-500">Dominant Color</div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

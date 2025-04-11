@@ -9,7 +9,7 @@ const OverviewPage: React.FC = () => {
     temperature: 30,
     ph: 7,
     carbon: 450,
-    sox: 0.8
+    so2: 0.8
   };
 
   // Chart data
@@ -72,10 +72,10 @@ const OverviewPage: React.FC = () => {
           type="carbon" 
         />
         <SensorCard 
-          title="SOx Level" 
-          value={sensorData.sox} 
+          title="SO2 Level" 
+          value={sensorData.so2} 
           unit="ppm" 
-          type="sox" 
+          type="so2" 
         />
       </div>
 

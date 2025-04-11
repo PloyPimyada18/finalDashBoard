@@ -10,19 +10,28 @@ const DeepAnalysisPage: React.FC = () => {
       id: 'normal',
       label: 'Normal',
       value: 991,
-      color: 'rgba(37, 99, 235, 1)'  // blue-600
+      color: 'rgba(37, 99, 235, 1)',  // blue-600
+      avg_cell_size: 15.2,
+      density_estimate: 2500000,
+      dominant_color: 'Blue'
     },
     {
       id: 'degraded',
       label: 'Degraded',
       value: 381,
-      color: 'rgba(251, 191, 36, 1)'  // amber-400
+      color: 'rgba(251, 191, 36, 1)',  // amber-400
+      avg_cell_size: 12.8,
+      density_estimate: 1800000,
+      dominant_color: 'Yellow'
     },
     {
       id: 'dead',
       label: 'Dead',
       value: 152,
-      color: 'rgba(239, 68, 68, 1)'  // red-500
+      color: 'rgba(239, 68, 68, 1)',  // red-500
+      avg_cell_size: 10.5,
+      density_estimate: 800000,
+      dominant_color: 'Red'
     }
   ];
   
@@ -56,6 +65,10 @@ const DeepAnalysisPage: React.FC = () => {
           height="18rem"
           onToggleItem={handleToggleItem}
           visibleItems={visibleItems}
+          // Overall statistics
+          avgCellSize={13.5}
+          densityEstimate={1200}
+          dominantColor="Blue"
         />
       </div>
     </PageTemplate>

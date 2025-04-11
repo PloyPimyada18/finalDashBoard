@@ -1,6 +1,6 @@
 import React from 'react';
 
-type SensorType = 'temperature' | 'ph' | 'carbon' | 'sox';
+type SensorType = 'temperature' | 'ph' | 'carbon' | 'so2' | 'do' | 'ec' | 'redox' | 'turbidity' | 'light';
 
 interface ColorRange {
   value: number;
@@ -27,7 +27,7 @@ const SensorCard: React.FC<SensorCardProps> = ({ title, value, unit = '', type }
       ph: [
         { value: 6, color: 'text-red-500' },
         { value: 7, color: 'text-yellow-500' },
-        { value: 7.1, color: 'text-green-500' }, // Equal to 7
+        { value: 7.1, color: 'text-green-500' },
         { value: 8, color: 'text-yellow-500' },
         { value: Infinity, color: 'text-red-500' }
       ],
@@ -37,11 +37,44 @@ const SensorCard: React.FC<SensorCardProps> = ({ title, value, unit = '', type }
         { value: 1500, color: 'text-orange-500' },
         { value: Infinity, color: 'text-red-500' }
       ],
-      sox: [
+      so2: [
         { value: 0.5, color: 'text-green-500' },
         { value: 1.5, color: 'text-yellow-500' },
         { value: 2.5, color: 'text-orange-500' },
         { value: Infinity, color: 'text-red-500' }
+      ],
+      do: [
+        { value: 2, color: 'text-red-500' },
+        { value: 4, color: 'text-yellow-500' },
+        { value: 6, color: 'text-green-500' },
+        { value: 8, color: 'text-blue-500' },
+        { value: Infinity, color: 'text-blue-300' }
+      ],
+      ec: [
+        { value: 0.5, color: 'text-blue-500' },
+        { value: 1.0, color: 'text-green-500' },
+        { value: 1.5, color: 'text-yellow-500' },
+        { value: Infinity, color: 'text-red-500' }
+      ],
+      redox: [
+        { value: 100, color: 'text-red-500' },
+        { value: 200, color: 'text-yellow-500' },
+        { value: 300, color: 'text-green-500' },
+        { value: 400, color: 'text-blue-500' },
+        { value: Infinity, color: 'text-blue-300' }
+      ],
+      turbidity: [
+        { value: 1, color: 'text-green-500' },
+        { value: 3, color: 'text-yellow-500' },
+        { value: 5, color: 'text-orange-500' },
+        { value: Infinity, color: 'text-red-500' }
+      ],
+      light: [
+        { value: 200, color: 'text-red-500' },
+        { value: 500, color: 'text-yellow-500' },
+        { value: 800, color: 'text-green-500' },
+        { value: 1000, color: 'text-blue-500' },
+        { value: Infinity, color: 'text-blue-300' }
       ]
     };
 
@@ -52,7 +85,6 @@ const SensorCard: React.FC<SensorCardProps> = ({ title, value, unit = '', type }
       }
     }
     
-    // Fallback color
     return 'text-gray-500';
   };
 
