@@ -1,7 +1,8 @@
-import React, { useState, ReactNode } from 'react';
-import DashboardHeader from './DashboardHeader';
-import Sidebar from './Sidebar';
-import Footbar from './footer/Footerbar';
+import React, { useState, ReactNode } from "react";
+import DashboardHeader from "./DashboardHeader";
+import Sidebar from "./Sidebar";
+import Footbar from "./footer/Footerbar";
+import Alert from "./Alert";
 
 interface PageTemplateProps {
   children: ReactNode;
@@ -18,10 +19,25 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title }) => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <Sidebar isCollapsed={isSidebarCollapsed} onToggleCollapse={toggleSidebar} />
+      <Sidebar
+        isCollapsed={isSidebarCollapsed}
+        onToggleCollapse={toggleSidebar}
+      />
 
       {/* Main Content - Apply margin based on sidebar state */}
-      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${isSidebarCollapsed ? 'ml-16' : 'ml-64'}`}>
+      <div
+        className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 relative ${
+          isSidebarCollapsed ? "ml-16" : "ml-64"
+        }`}
+      >
+        {/* Alert - Absolute position at top */}
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md">
+          <Alert
+            type="warning"
+            message="Temperature sensor is approaching upper threshold. Current reading: 30°C"
+          />
+        </div>
+
         {/* Header */}
         <div className="w-full bg-white shadow-md z-10">
           <DashboardHeader />
@@ -33,10 +49,10 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title }) => {
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
           </div>
-          
+
           {/* Page Content */}
           {children}
-          
+
           {/* Footer */}
           <Footbar />
         </div>
@@ -45,4 +61,4 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title }) => {
   );
 };
 
-export default PageTemplate; 
+export default PageTemplate;

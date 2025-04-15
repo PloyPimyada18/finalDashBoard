@@ -91,7 +91,7 @@ const HistoricalDataPage: React.FC = () => {
 
         {/* Data Visualization */}
         <div className="w-full">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse ">
             <tbody>
               <tr className="bg-white">
                 <td className="p-4 border rounded-lg shadow">
