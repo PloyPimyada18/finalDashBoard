@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PageTemplate from "../components/PageTemplate";
-import Slider from "../components/Slider";
 
 interface HistoricalData {
   timestamp: string;
@@ -12,7 +11,7 @@ interface HistoricalData {
 const HistoricalDataPage: React.FC = () => {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
-  const [data, setData] = useState<HistoricalData[]>([]);
+  const [data] = useState<HistoricalData[]>([]);
 
   const handleDownloadCSV = () => {
     if (!startDate || !endDate) {

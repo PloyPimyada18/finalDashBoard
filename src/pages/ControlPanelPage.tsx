@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import PageTemplate from '../components/PageTemplate';
-import ToggleSwitch from '../components/ToggleSwitch';
-import Slider from '../components/Slider';
+import React, { useState } from "react";
+import PageTemplate from "../components/PageTemplate";
+import ToggleSwitch from "../components/ToggleSwitch";
+import Slider from "../components/Slider";
 
 const ControlPanelPage: React.FC = () => {
   const [pumpState, setPumpState] = useState(false);
   const [lightState, setLightState] = useState(false);
   const [phState, setPhState] = useState(false);
-  const [phValue, setPhValue] = useState(7.0);
+  const [phValue] = useState(7.0);
   const [lightIntensity, setLightIntensity] = useState(50);
 
   return (
     <PageTemplate title="Control Panel">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        <ToggleSwitch 
-          label="Pump" 
-          checked={pumpState} 
+        <ToggleSwitch
+          label="Pump"
+          checked={pumpState}
           onChange={setPumpState}
         />
-        
+
         <div className="space-y-4">
-          <ToggleSwitch 
-            label="Light" 
-            checked={lightState} 
+          <ToggleSwitch
+            label="Light"
+            checked={lightState}
             onChange={setLightState}
           />
           {lightState && (
@@ -35,10 +35,10 @@ const ControlPanelPage: React.FC = () => {
             />
           )}
         </div>
-        
-        <ToggleSwitch 
-          label="pH Control" 
-          checked={phState} 
+
+        <ToggleSwitch
+          label="pH Control"
+          checked={phState}
           onChange={setPhState}
           phValue={phValue}
         />
@@ -47,4 +47,4 @@ const ControlPanelPage: React.FC = () => {
   );
 };
 
-export default ControlPanelPage; 
+export default ControlPanelPage;

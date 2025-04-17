@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import PageTemplate from "../components/PageTemplate";
 
-interface User {
-  id: string;
-  name: string;
-  role: "admin" | "user";
-}
-
 interface IoTNode {
   id: string;
   name: string;
