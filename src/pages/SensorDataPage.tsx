@@ -9,13 +9,18 @@ const SensorDataPage: React.FC = () => {
   const sensorData = {
     temperature: 30,
     ph: 7,
-    carbon: 450,
-    so2: 0.8,
+    carbonIn: 450,
+    carbonOut: 420,
+    so2In: 0.8,
+    so2Out: 0.5,
     do: 6,
     ec: 1.2,
     redox: 250,
     turbidity: 3,
     light: 800,
+    o2In: 21.5,
+    o2Out: 20.8,
+    humidity: 65,
   };
 
   // Table data
@@ -129,7 +134,7 @@ const SensorDataPage: React.FC = () => {
           <CssTable columns={nodeColumns} data={nodeData} showEdit={true} />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <SensorCard
           title="Temperature"
           value={sensorData.temperature}
@@ -138,14 +143,26 @@ const SensorDataPage: React.FC = () => {
         />
         <SensorCard title="pH Level" value={sensorData.ph} type="ph" />
         <SensorCard
-          title="Carbon Level"
-          value={sensorData.carbon}
+          title="Carbon Level In"
+          value={sensorData.carbonIn}
           unit="ppm"
           type="carbon"
         />
         <SensorCard
-          title="SO₂ Level"
-          value={sensorData.so2}
+          title="Carbon Level Out"
+          value={sensorData.carbonOut}
+          unit="ppm"
+          type="carbon"
+        />
+        <SensorCard
+          title="SO₂ Level In"
+          value={sensorData.so2In}
+          unit="ppm"
+          type="so2"
+        />
+        <SensorCard
+          title="SO₂ Level Out"
+          value={sensorData.so2Out}
           unit="ppm"
           type="so2"
         />
@@ -178,6 +195,24 @@ const SensorDataPage: React.FC = () => {
           value={sensorData.light}
           unit="lux"
           type="light"
+        />
+        <SensorCard
+          title="O₂ In"
+          value={sensorData.o2In}
+          unit="ppm"
+          type="o2"
+        />
+        <SensorCard
+          title="O₂ Out"
+          value={sensorData.o2Out}
+          unit="ppm"
+          type="o2"
+        />
+        <SensorCard
+          title="Humidity"
+          value={sensorData.humidity}
+          unit="%"
+          type="humidity"
         />
       </div>
 
