@@ -55,35 +55,35 @@ const SettingsPage: React.FC = () => {
 
   return (
     <PageTemplate title="Settings">
-      <div className="p-6 space-y-6 bg-gray-100">
+      <div className="p-4 md:p-6 space-y-6 bg-gray-100 overflow-x-hidden">
         {/* User Management Section */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 text-black">
             User Management
           </h2>
           <div className="space-y-4 mb-4">
-            <div className="flex items-center space-x-4">
-              <span className="text-black">User Role:</span>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <span className="text-black whitespace-nowrap">User Role:</span>
               <select
                 value={userRole}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setUserRole(e.target.value as "admin" | "user");
                 }}
-                className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
+                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-full sm:w-48"
               >
                 <option value="admin">Administrator</option>
                 <option value="user">Regular User</option>
               </select>
             </div>
-            <div className="flex items-center space-x-4 mt-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <input
                 type="email"
                 placeholder="Enter user email"
-                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-64"
+                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-full sm:w-64"
               />
               <button
                 onClick={() => alert("Email added!")}
-                className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 w-full sm:w-auto whitespace-nowrap"
               >
                 Add
               </button>
@@ -92,7 +92,7 @@ const SettingsPage: React.FC = () => {
         </div>
 
         {/* Data Update Settings */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 text-black">
             Data Update Settings
           </h2>
@@ -125,12 +125,12 @@ const SettingsPage: React.FC = () => {
         </div>
 
         {/* IoT Node Management */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 text-black">
             IoT Node Management
           </h2>
           <div className="space-y-4 mb-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 placeholder="Node Name"
@@ -138,14 +138,14 @@ const SettingsPage: React.FC = () => {
                 onChange={(e) =>
                   setNewNode({ ...newNode, name: e.target.value })
                 }
-                className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
+                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-full sm:w-48"
               />
               <select
                 value={newNode.reactor}
                 onChange={(e) =>
                   setNewNode({ ...newNode, reactor: e.target.value })
                 }
-                className="border border-gray-300 rounded px-3 py-1 text-black bg-white"
+                className="border border-gray-300 rounded px-3 py-1 text-black bg-white w-full sm:w-48"
               >
                 <option value="Reactor A">Reactor1</option>
                 <option value="Reactor B">Reactor2</option>
@@ -153,7 +153,7 @@ const SettingsPage: React.FC = () => {
               </select>
               <button
                 onClick={handleAddNode}
-                className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 w-full sm:w-auto whitespace-nowrap"
               >
                 Add
               </button>
@@ -162,7 +162,7 @@ const SettingsPage: React.FC = () => {
         </div>
 
         {/* Notification Settings */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 text-black">
             Notification Settings
           </h2>

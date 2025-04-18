@@ -24,10 +24,10 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title }) => {
         onToggleCollapse={toggleSidebar}
       />
 
-      {/* Main Content - Apply margin based on sidebar state */}
+      {/* Main Content - Apply margin and text size based on sidebar state */}
       <div
         className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 relative ${
-          isSidebarCollapsed ? "ml-16" : "ml-64"
+          isSidebarCollapsed ? "ml-16 text-base" : "ml-64 text-sm"
         }`}
       >
         {/* Alert - Absolute position at top */}
@@ -47,7 +47,13 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title }) => {
         <div className="flex-1 overflow-y-auto p-6">
           {/* Page Title */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
+            <h1
+              className={`font-bold text-gray-800 ${
+                isSidebarCollapsed ? "text-2xl" : "text-xl"
+              }`}
+            >
+              {title}
+            </h1>
           </div>
 
           {/* Page Content */}

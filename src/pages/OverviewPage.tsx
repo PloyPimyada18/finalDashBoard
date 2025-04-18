@@ -137,7 +137,7 @@ const OverviewPage: React.FC = () => {
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <LineChart
           data={tempData}
           title="Temperature"
@@ -146,9 +146,6 @@ const OverviewPage: React.FC = () => {
           type="single"
           yAxisTitle="Temperature (°C)"
         />
-        <div className="flex-1 h-[400px] overflow-hidden p-4">
-          <CssTable columns={nodeColumns} data={nodeData} showEdit={true} />
-        </div>
         <LineChart
           data={phData}
           title="pH"
@@ -165,6 +162,9 @@ const OverviewPage: React.FC = () => {
           type="double"
           yAxisTitle="CO₂ Level (ppm)"
         />
+        <div className="flex-1 h-[400px] overflow-hidden p-4">
+          <CssTable columns={nodeColumns} data={nodeData} showEdit={true} />
+        </div>
       </div>
     </PageTemplate>
   );

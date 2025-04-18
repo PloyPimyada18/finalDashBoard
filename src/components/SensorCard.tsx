@@ -119,13 +119,17 @@ const SensorCard: React.FC<SensorCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-700">{title}</h3>
-        <div className="text-4xl font-bold">
+    <div className="bg-white rounded-lg shadow-lg p-3 w-full">
+      <div className="flex flex-col">
+        <h3 className="text-sm font-semibold text-gray-700 mb-1">{title}</h3>
+        <div className="text-lg sm:text-xl lg:text-2xl font-bold">
           <span className={getColor(value, type)}>
             {value}
-            {unit && <span className="text-2xl">{unit}</span>}
+            {unit && (
+              <span className="text-base sm:text-lg lg:text-xl ml-1">
+                {unit}
+              </span>
+            )}
           </span>
         </div>
       </div>

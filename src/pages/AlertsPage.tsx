@@ -104,7 +104,7 @@ const AlertsPage: React.FC = () => {
 
   return (
     <PageTemplate title="Alerts">
-      <div className="mb-4 flex gap-4 items-center">
+      <div className="mb-4 w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="flex items-center">
           <label htmlFor="reactor-filter" className="mr-2 text-black">
             Filter by Reactor:

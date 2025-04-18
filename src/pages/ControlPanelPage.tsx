@@ -12,27 +12,29 @@ const ControlPanelPage: React.FC = () => {
 
   return (
     <PageTemplate title="Control Panel">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-6 max-w-6xl mx-auto">
         <ToggleSwitch
           label="Pump"
           checked={pumpState}
           onChange={setPumpState}
         />
 
-        <div className="space-y-4">
+        <div>
           <ToggleSwitch
             label="Light"
             checked={lightState}
             onChange={setLightState}
           />
           {lightState && (
-            <Slider
-              label="Light Intensity"
-              min={0}
-              max={100}
-              value={lightIntensity}
-              onChange={setLightIntensity}
-            />
+            <div className="mt-2">
+              <Slider
+                label="Light Intensity"
+                min={0}
+                max={100}
+                value={lightIntensity}
+                onChange={setLightIntensity}
+              />
+            </div>
           )}
         </div>
 

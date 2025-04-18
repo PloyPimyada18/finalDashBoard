@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface SliderProps {
   label: string;
@@ -15,7 +15,7 @@ const Slider: React.FC<SliderProps> = ({
   max = 100,
   value: initialValue = 50,
   onChange,
-  className = '',
+  className = "",
 }) => {
   const [value, setValue] = useState(initialValue);
 
@@ -26,12 +26,19 @@ const Slider: React.FC<SliderProps> = ({
   };
 
   return (
-    <div className={`w-full ${className}`}>
+    <div
+      className={`bg-white rounded-lg shadow-lg p-4 w-full max-w-full ${className}`}
+    >
       <div className="flex justify-between items-center mb-2">
-        <label htmlFor="slider" className="block text-sm font-medium text-black">
+        <label
+          htmlFor="slider"
+          className="block text-base lg:text-lg font-semibold text-gray-700 truncate"
+        >
           {label}
         </label>
-        <span className="text-sm font-medium text-black">{value}</span>
+        <span className="text-xs lg:text-sm font-medium text-gray-700 ml-2">
+          {value}
+        </span>
       </div>
       <input
         id="slider"
